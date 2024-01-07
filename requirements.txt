@@ -1,0 +1,4 @@
+moderngl>=5.9.0
+numba>=0.58.1
+pygame>=2.5.2
+opensimplex>=0.4.5
