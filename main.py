@@ -3,7 +3,7 @@ import moderngl as mgl
 import pygame as pg
 import sys
 from shader_program import ShaderProgram
-from scene import Scene                 
+from scene import Scene
 from player import Player
 from textures import Textures
 
@@ -13,10 +13,12 @@ class VoxelEngine:
         pg.init()
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MAJOR_VERSION, 3)
         pg.display.gl_set_attribute(pg.GL_CONTEXT_MINOR_VERSION, 3)
-        pg.display.gl_set_attribute(pg.GL_CONTEXT_PROFILE_MASK, pg.GL_CONTEXT_PROFILE_CORE)
+        pg.display.gl_set_attribute(
+            pg.GL_CONTEXT_PROFILE_MASK, pg.GL_CONTEXT_PROFILE_CORE)
         pg.display.gl_set_attribute(pg.GL_DEPTH_SIZE, 24)
 
-        pg.display.set_mode(WIN_RES, flags=pg.OPENGL | pg.DOUBLEBUF)
+        pg.display.set_mode(pg.display.get_desktop_sizes()[
+                            0], flags=pg.OPENGL | pg.DOUBLEBUF)
         self.ctx = mgl.create_context()
 
         self.ctx.enable(flags=mgl.DEPTH_TEST | mgl.CULL_FACE | mgl.BLEND)
@@ -63,7 +65,7 @@ class VoxelEngine:
             self.handle_events()
             self.update()
             self.render()
-            
+
         pg.quit()
         sys.exit()
 
