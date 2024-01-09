@@ -16,7 +16,7 @@ class VoxelHandler:
         self.voxel_normal = None
 
         self.interaction_mode = 0  # 0: remove voxel   1: add voxel
-        self.new_voxel_id = 1
+        self.new_voxel_id = DIRT
 
     def add_voxel(self):
         if self.voxel_id:
@@ -148,36 +148,3 @@ class VoxelHandler:
 
             return voxel_id, voxel_index, voxel_local_pos, chunk
         return 0, 0, 0, 0
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

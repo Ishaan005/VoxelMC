@@ -28,29 +28,26 @@ class Chunk:
         self.mesh = ChunkMesh(self)
 
     def render(self):
-        if not self.is_empty  and self.is_on_frustum(self):
+        if not self.is_empty and self.is_on_frustum(self):
             self.set_uniform()
             self.mesh.render()
 
     def build_voxels(self):
-        # empty chunk
         voxels = np.zeros(CHUNK_VOL, dtype='uint8')
 
-        # fill chunk
         cx, cy, cz = glm.ivec3(self.position) * CHUNK_SIZE
         self.generate_terrain(voxels, cx, cy, cz)
 
         if np.any(voxels):
             self.is_empty = False
-
         return voxels
 
     @staticmethod
     @njit
     def generate_terrain(voxels, cx, cy, cz):
         for x in range(CHUNK_SIZE):
+            wx = x + cx
             for z in range(CHUNK_SIZE):
-                wx = x + cx
                 wz = z + cz
                 world_height = get_height(wx, wz)
                 local_height = min(world_height - cy, CHUNK_SIZE)
@@ -58,48 +55,3 @@ class Chunk:
                 for y in range(local_height):
                     wy = y + cy
                     set_voxel_id(voxels, x, y, z, wx, wy, wz, world_height)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

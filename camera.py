@@ -1,6 +1,7 @@
 from settings import *
 from frustum import Frustum
 
+
 class Camera:
     def __init__(self, position, yaw, pitch):
         self.position = glm.vec3(position)
@@ -56,45 +57,3 @@ class Camera:
 
     def move_back(self, velocity):
         self.position -= self.forward * velocity
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
