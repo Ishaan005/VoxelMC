@@ -17,6 +17,7 @@ class ShaderProgram:
         self.chunk['m_proj'].write(self.player.m_proj)
         self.chunk['m_model'].write(glm.mat4())
         self.chunk['u_texture_array_0'] = 1
+        self.chunk["bg_color"] = BG_COLOR
 
         # marker
         self.voxel_marker['m_proj'].write(self.player.m_proj)
