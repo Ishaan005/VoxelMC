@@ -1,17 +1,39 @@
 import pygame as pg
 from camera import Camera
 from settings import *
-
+from collider import Collider
 
 class Player(Camera):
     def __init__(self, app, position=PLAYER_POS, yaw=-90, pitch=0):
         self.app = app
         super().__init__(position, yaw, pitch)
 
+        #collision
+        self.width = 0.6
+        self.height = 1.8
+
+        self.collider = Collider()
+
+    def update_collider(self):
+        x, y, z = self.position
+
+        self.collider.x1 = x - self.width / 2
+        self.collider.x2 = x + self.width / 2
+
+        self.collider.y1 = y
+        self.collider.y2 = y + self.height
+
+        self.collider.z1 = z - self.width / 2
+        self.collider.z2 = z + self.width / 2
+
+
     def update(self):
         self.keyboard_control()
         self.mouse_control()
         super().update()
+
+        self.grounded = False
+        
 
     def handle_event(self, event):
         # adding and removing voxels with clicks
